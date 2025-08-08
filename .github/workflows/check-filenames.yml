@@ -1,0 +1,17 @@
+name: Check Filenames for ASCII Only
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-filenames:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check filenames for non-ASCII characters
+        run: |
+          python3 .github/scripts/check_filenames.py
